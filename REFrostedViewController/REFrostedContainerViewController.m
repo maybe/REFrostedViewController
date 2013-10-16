@@ -312,15 +312,15 @@
     
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
-            if ([recognizer velocityInView:self.view].x < 0) {
-                [self hide];
-            } else {
+            if ([recognizer velocityInView:self.view].x > 0 && point.x > 50) { // hack by panda
                 [self show];
+            } else {
+                [self hide];
             }
         }
         
         if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
-            if ([recognizer velocityInView:self.view].x < 0) {
+            if ([recognizer velocityInView:self.view].x < 0 && point.x > 50) { // hack by panda
                 [self show];
             } else {
                 [self hide];
