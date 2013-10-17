@@ -87,6 +87,8 @@
     
     UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
     [self.view addGestureRecognizer:recognizer];
+    
+    self.immdApperance = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -97,21 +99,25 @@
     self.backgroundImageView.frame = self.view.bounds;
     self.frostedViewController.menuViewController.view.frame = self.containerView.bounds;
     
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
-        [self setContainerFrame:CGRectMake(- self.frostedViewController.minimumMenuViewSize.width, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
+    if (!self.immdApperance) {
+        if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
+            [self setContainerFrame:CGRectMake(- self.frostedViewController.minimumMenuViewSize.width, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
+        }
+        
+        if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
+            [self setContainerFrame:CGRectMake(self.view.frame.size.width, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
+        }
+        
+        if (self.frostedViewController.direction == REFrostedViewControllerDirectionTop) {
+            [self setContainerFrame:CGRectMake(0, -self.frostedViewController.minimumMenuViewSize.height, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
+        }
+        
+        if (self.frostedViewController.direction == REFrostedViewControllerDirectionBottom) {
+            [self setContainerFrame:CGRectMake(0, self.view.frame.size.height, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
+        }
     }
     
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
-        [self setContainerFrame:CGRectMake(self.view.frame.size.width, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
-    }
-    
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionTop) {
-        [self setContainerFrame:CGRectMake(0, -self.frostedViewController.minimumMenuViewSize.height, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
-    }
-    
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionBottom) {
-        [self setContainerFrame:CGRectMake(0, self.view.frame.size.height, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
-    }
+    self.immdApperance = NO;
     
     if (self.animateApperance)
         [self show];

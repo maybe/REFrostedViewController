@@ -138,6 +138,11 @@
     self.visible = YES;
 }
 
+- (void)showContainerImmediately
+{
+    self.containerViewController.immdApperance = YES;
+}
+
 - (void)hideMenuViewController
 {
     if (!self.liveBlur) {
