@@ -109,6 +109,25 @@
     [self.contentViewController endAppearanceTransition];
 }
 
+- (UIViewController *)childViewControllerForStatusBarStyle
+{
+    return self.contentViewController;
+}
+
+- (UIViewController *)childViewControllerForStatusBarHidden
+{
+    return self.contentViewController;
+}
+
+- (void)setContentViewController:(UIViewController *)contentViewController
+{
+    _contentViewController = contentViewController;
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    }
+}
+
+
 #pragma mark -
 
 - (void)presentMenuViewController
