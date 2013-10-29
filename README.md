@@ -20,7 +20,7 @@ Build and run the `REFrostedViewControllerExample` project in Xcode to see `REFr
 ### CocoaPods
 
 The recommended approach for installating `REFrostedViewController` is via the [CocoaPods](http://cocoapods.org/) package manager, as it provides flexible dependency management and dead simple installation.
-For best results, it is recommended that you install via CocoaPods >= **0.26.2** using Git >= **1.8.0** installed via Homebrew.
+For best results, it is recommended that you install via CocoaPods >= **0.27.0** using Git >= **1.8.0** installed via Homebrew.
 
 Install CocoaPods if not already available:
 
@@ -134,8 +134,6 @@ You can customize the following properties of `REFrostedViewController`:
 ## Credits
 
 Inspired by a [Dribbble shot](http://dribbble.com/shots/1173945-Menu-Concept-1), author [Jackie Tran](http://dribbble.com/jackietrananh).
-
-UI Control structure and View Controller containment practices adopted from [Ryan Nystrom](https://github.com/rnystrom) and [Matthias Tretter](https://github.com/myell0w).
 
 The blur algorithm comes from WWDC 2013's session 208, "What's New in iOS User Interface Design".
 
