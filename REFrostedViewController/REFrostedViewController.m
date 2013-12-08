@@ -65,13 +65,13 @@
 
 - (void)commonInit
 {
-
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     self.wantsFullScreenLayout = YES;
 #pragma clang diagnostic pop
     _panGestureEnabled = YES;
     _animationDuration = 0.35f;
+    _backgroundFadeAmount = 0.3f;
     _blurTintColor = REUIKitIsFlatMode() ? nil : [UIColor colorWithWhite:1 alpha:0.75f];
     _blurSaturationDeltaFactor = 1.8f;
     _blurRadius = 10.0f;
@@ -207,13 +207,18 @@
     self.containerViewController.immdApperance = YES;
 }
 
-- (void)hideMenuViewController
+- (void)hideMenuViewControllerWithCompletitionHandler:(void(^)(void))completition
 {
     if (!self.liveBlur) {
         self.containerViewController.screenshotImage = [[self.contentViewController.view re_screenshot] re_applyBlurWithRadius:self.blurRadius tintColor:self.blurTintColor saturationDeltaFactor:self.blurSaturationDeltaFactor maskImage:nil];
         [self.containerViewController refreshBackgroundImage];
     }
-    [self.containerViewController hide];
+    [self.containerViewController hideWithCompletitionHandler:completition];
+}
+
+- (void)hideMenuViewController
+{
+	[self hideMenuViewControllerWithCompletitionHandler:^{}];
 }
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
