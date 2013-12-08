@@ -117,7 +117,7 @@
     }
     } else {
     	self.immdApperance = NO;
-    
+    }
     if (self.animateApperance)
         [self show];
 }
